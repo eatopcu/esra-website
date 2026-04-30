@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virginia Turkish Home</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <h1 class="logo">Virginia Turkish Home</h1>
+        <button id="menu-toggle" class="menu-toggle" aria-label="Menüyü Aç/Kapat">☰</button>
+        <nav id="main-nav" class="main-nav">
+          <a href="#hero">Ana Sayfa</a>
+          <a href="#categories">Kategoriler</a>
+          <a href="#products">Ürünler</a>
+          <a href="#cart">Sepet</a>
+          <a href="#checkout">Ödeme</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="hero">
+        <div class="container hero-content">
+          <h2>Zarif Türk Ev Koleksiyonları</h2>
+          <p>
+            Pastel tonların şıklığıyla tasarlanmış kahve, çay ve sunum ürünlerini
+            keşfedin.
+          </p>
+          <a href="#products" class="btn primary-btn">Alışverişe Başla</a>
+        </div>
+      </section>
+
+      <section id="categories" class="section container">
+        <h3>Kategoriler</h3>
+        <div id="category-list" class="category-grid"></div>
+      </section>
+
+      <section id="products" class="section container">
+        <div class="section-header">
+          <h3>Öne Çıkan Ürünler</h3>
+          <select id="category-filter" aria-label="Kategori Filtresi">
+            <option value="all">Tüm Kategoriler</option>
+          </select>
+        </div>
+        <div id="product-grid" class="product-grid"></div>
+      </section>
+
+      <section id="cart" class="section container">
+        <h3>Sepetim</h3>
+        <div id="cart-items" class="cart-items"></div>
+        <div class="cart-summary">
+          <p>Ürün Toplamı: <span id="subtotal">₺0.00</span></p>
+          <p>Kargo Ücreti: <span id="shipping">₺0.00</span></p>
+          <p class="total">Genel Toplam: <span id="total">₺0.00</span></p>
+          <p class="shipping-note">Shipping cost is paid by the customer.</p>
+        </div>
+      </section>
+
+      <section id="checkout" class="section container">
+        <h3>Ödeme (Demo)</h3>
+        <form id="checkout-form" class="checkout-form">
+          <div class="form-group">
+            <label for="name">Ad Soyad</label>
+            <input id="name" name="name" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="address">Adres</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="cardNumber">Kart Numarası</label>
+            <input id="cardNumber" name="cardNumber" type="text" minlength="16" maxlength="19" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="expDate">Son Kullanma</label>
+              <input id="expDate" name="expDate" type="month" required />
+            </div>
+            <div class="form-group">
+              <label for="cvv">CVV</label>
+              <input id="cvv" name="cvv" type="password" minlength="3" maxlength="4" required />
+            </div>
+          </div>
+          <button type="submit" class="btn primary-btn">Siparişi Tamamla</button>
+          <p id="checkout-message" class="checkout-message"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h4>Hakkımızda</h4>
+          <p>
+            Virginia Turkish Home, geleneksel Türk sunum kültürünü modern tasarımla
+            buluşturur.
+          </p>
+        </div>
+        <div>
+          <h4>İletişim</h4>
+          <p>Email: hello@virginiaturkishhome.com</p>
+          <p>Telefon: +1 (555) 212-4555</p>
+        </div>
+        <div>
+          <h4>Kargo Politikası</h4>
+          <p>Shipping cost is paid by the customer.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

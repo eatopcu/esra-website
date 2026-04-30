@@ -1,0 +1,93 @@
+:root {
+  --beige: #f5efe6;
+  --pink: #f8e8eb;
+  --cream: #fffaf2;
+  --blue: #e8f2f8;
+  --text: #4e4a45;
+  --accent: #cc9cab;
+  --white: #ffffff;
+  --shadow: rgba(78, 74, 69, 0.08);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, var(--cream), var(--beige));
+}
+.container { width: min(1100px, 92%); margin: 0 auto; }
+
+.site-header {
+  background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 0; }
+.logo { margin: 0; font-size: 1.3rem; }
+.main-nav { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.main-nav a { text-decoration: none; color: var(--text); padding: 0.45rem 0.7rem; border-radius: 999px; }
+.main-nav a:hover { background: var(--pink); }
+.menu-toggle { display: none; border: none; background: var(--blue); padding: 0.45rem 0.7rem; border-radius: 8px; }
+
+.hero {
+  background: linear-gradient(120deg, var(--pink), var(--blue));
+  padding: 4rem 0;
+  text-align: center;
+}
+.hero h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 0.5rem; }
+.hero p { max-width: 650px; margin: 0 auto 1.4rem; }
+
+.btn { border: none; cursor: pointer; padding: 0.7rem 1rem; border-radius: 10px; font-weight: 600; }
+.primary-btn { background: var(--accent); color: var(--white); text-decoration: none; display: inline-block; }
+.primary-btn:hover { opacity: 0.9; }
+
+.section { padding: 2.5rem 0; }
+.section h3 { margin-top: 0; }
+.section-header { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+
+.category-grid, .product-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.category-card, .product-card, .cart-row {
+  background: var(--white);
+  border-radius: 14px;
+  box-shadow: 0 6px 16px var(--shadow);
+}
+.category-card { padding: 1rem; text-align: center; background: var(--blue); }
+.product-card { overflow: hidden; display: flex; flex-direction: column; }
+.product-card img { width: 100%; height: 180px; object-fit: cover; }
+.product-content { padding: 1rem; display: grid; gap: 0.5rem; }
+.price { color: #9f6d7b; font-weight: 700; }
+
+.cart-items { display: grid; gap: 0.8rem; margin-bottom: 1rem; }
+.cart-row { padding: 0.8rem; display: flex; justify-content: space-between; align-items: center; gap: 0.8rem; }
+.cart-summary { background: var(--white); padding: 1rem; border-radius: 12px; }
+.total { font-size: 1.1rem; font-weight: 700; }
+.shipping-note { color: #7b7270; }
+
+.checkout-form { background: var(--white); padding: 1rem; border-radius: 14px; box-shadow: 0 6px 16px var(--shadow); }
+.form-group { display: grid; gap: 0.3rem; margin-bottom: 0.9rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+input, textarea, select {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 0.6rem;
+  font: inherit;
+}
+.checkout-message { margin-top: 0.8rem; font-weight: 600; }
+
+.site-footer { background: #f3e6dd; padding: 2rem 0; margin-top: 2rem; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+
+@media (max-width: 768px) {
+  .menu-toggle { display: inline-block; }
+  .main-nav { display: none; width: 100%; }
+  .main-nav.open { display: flex; }
+  .header-inner { flex-wrap: wrap; }
+  .form-row { grid-template-columns: 1fr; }
+}
