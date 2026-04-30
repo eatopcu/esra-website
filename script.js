@@ -33,6 +33,8 @@ const PRODUCTS = [
 ];
 
 const CART_KEY = 'vth_cart';
+const PRODUCTS_KEY = 'vth_products';
+const API_ENDPOINT_KEY = 'vth_api_endpoint';
 const SHIPPING = { carrier: 'USPS', baseRate: 12.5, paidBy: 'Customer' };
 const TRACKING_STATUSES = ['Order received', 'Preparing shipment', 'Shipped with USPS', 'Out for delivery', 'Delivered'];
 const OPTIONAL_LOGO_URL = ''; // Add a logo URL here later if desired.
@@ -43,12 +45,15 @@ const el = {
   activeCategoryText: q('#activeCategoryText'), productGrid: q('#productGrid'), cartItems: q('#cartItems'),
   subtotal: q('#subtotalPrice'), shipping: q('#shippingPrice'), total: q('#totalPrice'), checkoutForm: q('#checkoutForm'),
   checkoutMessage: q('#checkoutMessage'), trackingForm: q('#trackingForm'), trackingResult: q('#trackingResult'),
-  membershipForm: q('#membershipForm'), brandLogo: q('#brandLogo')
+  membershipForm: q('#membershipForm'), brandLogo: q('#brandLogo'),
+  adminProductForm: q('#adminProductForm'), apiEndpoint: q('#apiEndpoint'), syncApiBtn: q('#syncApiBtn'), adminMessage: q('#adminMessage')
 };
 
 let activeCategory = 'All Products';
 const getCart = () => JSON.parse(localStorage.getItem(CART_KEY) || '[]');
 const setCart = (cart) => localStorage.setItem(CART_KEY, JSON.stringify(cart));
+const getProducts = () => JSON.parse(localStorage.getItem(PRODUCTS_KEY) || 'null') || PRODUCTS;
+const setProducts = (items) => localStorage.setItem(PRODUCTS_KEY, JSON.stringify(items));
 
 function initLogo() {
   if (OPTIONAL_LOGO_URL) {
@@ -70,9 +75,10 @@ function renderCategories() {
 }
 
 function filteredProducts() {
-  if (activeCategory === 'All Products') return PRODUCTS;
-  if (activeCategory === 'İndirimli Ürünler') return PRODUCTS.filter((p) => p.discounted || p.category === 'İndirimli Ürünler');
-  return PRODUCTS.filter((p) => p.category === activeCategory);
+  const products = getProducts();
+  if (activeCategory === 'All Products') return products;
+  if (activeCategory === 'İndirimli Ürünler') return products.filter((p) => p.discounted || p.category === 'İndirimli Ürünler');
+  return products.filter((p) => p.category === activeCategory);
 }
 
 function renderProducts() {
@@ -116,7 +122,7 @@ function renderCart() {
   }
   let subtotal = 0;
   el.cartItems.innerHTML = cart.map((item) => {
-    const p = PRODUCTS.find((product) => product.id === item.id);
+    const p = getProducts().find((product) => product.id === item.id);
     const line = p.price * item.qty; subtotal += line;
     return `<div class="cart-item"><div><strong>${p.name}</strong><br><small>$${p.price.toFixed(2)} x ${item.qty}</small></div><div class="qty-controls"><button class="qty-btn" onclick="changeQty(${item.id},-1)">-</button><button class="qty-btn" onclick="changeQty(${item.id},1)">+</button><button class="qty-btn" onclick="removeItem(${item.id})">x</button></div></div>`;
   }).join('');
@@ -160,3 +166,56 @@ initLogo();
 renderCategories();
 renderProducts();
 renderCart();
+
+
+function upsertCategory(category) {
+  if (!CATEGORIES.includes(category) && category.trim()) {
+    CATEGORIES.splice(CATEGORIES.length - 1, 0, category.trim());
+    renderCategories();
+  }
+}
+
+el.adminProductForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(el.adminProductForm);
+  const items = getProducts();
+  const item = {
+    id: items.length ? Math.max(...items.map((p) => p.id)) + 1 : 1,
+    name: formData.get('name'),
+    category: formData.get('category'),
+    price: Number(formData.get('price')),
+    image: formData.get('image'),
+    description: formData.get('description'),
+    discounted: formData.get('discounted') === 'on'
+  };
+  items.push(item);
+  setProducts(items);
+  upsertCategory(item.category);
+  renderProducts();
+  el.adminProductForm.reset();
+  el.adminMessage.textContent = 'Product added locally. You can now sync to backend endpoint if configured.';
+});
+
+el.syncApiBtn.addEventListener('click', async () => {
+  const endpoint = el.apiEndpoint.value.trim();
+  if (!endpoint) {
+    el.adminMessage.textContent = 'No endpoint set. Save endpoint to enable backend sync.';
+    return;
+  }
+  localStorage.setItem(API_ENDPOINT_KEY, endpoint);
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ products: getProducts() })
+    });
+    el.adminMessage.textContent = res.ok ? 'Backend sync complete.' : 'Backend responded with an error status.';
+  } catch (error) {
+    el.adminMessage.textContent = 'Backend sync failed (check endpoint/CORS).';
+  }
+});
+
+(function initApiEndpoint() {
+  const saved = localStorage.getItem(API_ENDPOINT_KEY);
+  if (saved) el.apiEndpoint.value = saved;
+})();

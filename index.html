@@ -11,14 +11,12 @@
   </head>
   <body>
     <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle menu">☰ Menu</button>
-
     <aside class="sidebar" id="sidebar">
       <div class="brand-wrap">
         <img id="brandLogo" class="brand-logo hidden" alt="VIRGINIA TURKISH HOME logo" />
         <h1 class="brand-title">VIRGINIA TURKISH HOME</h1>
         <p class="brand-sub">Luxury Turkish Home Boutique</p>
       </div>
-
       <nav class="side-nav">
         <button class="cat-btn active" data-category="All Products">All Products</button>
         <div id="categoryList"></div>
@@ -26,8 +24,7 @@
     </aside>
 
     <main class="content">
-      <section class="hero" id="hero">
-        <div class="hero-overlay"></div>
+      <section class="hero">
         <div class="hero-content">
           <h2>VIRGINIA TURKISH HOME</h2>
           <p>Curated Turkish elegance for timeless homes.</p>
@@ -36,7 +33,7 @@
       </section>
 
       <section id="products" class="section">
-        <div class="section-header">
+        <div class="section-header elegant-line">
           <h3>Collection</h3>
           <p id="activeCategoryText">Showing: All Products</p>
         </div>
@@ -98,6 +95,25 @@
         <form id="membershipForm" class="checkout-form compact hidden"></form>
       </section>
 
+      <section id="admin" class="section card">
+        <div class="section-header"><h3>Admin Product Editor</h3></div>
+        <p class="note">Frontend demo with backend-ready endpoint setting.</p>
+        <form id="adminProductForm" class="checkout-form">
+          <input type="text" name="name" placeholder="Product name" required>
+          <input type="text" name="category" placeholder="Category" required>
+          <input type="number" name="price" step="0.01" placeholder="Price" required>
+          <input type="url" name="image" placeholder="Image URL" required>
+          <input type="text" name="description" placeholder="Description" required>
+          <label class="checkline"><input type="checkbox" name="discounted"> Mark as discounted</label>
+          <button class="cta-btn" type="submit">Add Product</button>
+        </form>
+        <div class="api-row">
+          <input id="apiEndpoint" type="url" placeholder="Optional backend endpoint: https://api.example.com/products">
+          <button id="syncApiBtn" class="ghost-btn" type="button">Sync to Backend (Optional)</button>
+        </div>
+        <p id="adminMessage" class="note"></p>
+      </section>
+
       <footer class="footer">
         <h4>VIRGINIA TURKISH HOME</h4>
         <p>Fine Turkish home collections with a luxurious boutique experience.</p>
@@ -109,7 +125,6 @@
     </main>
 
     <a class="whatsapp" href="https://wa.me/12028417836" target="_blank" rel="noopener">WhatsApp Support</a>
-
     <script src="script.js"></script>
   </body>
 </html>
