@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VIRGINIA TURKISH HOME</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open menu">☰ Menu</button>
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-block">
+        <img id="brandLogo" class="brand-logo hidden" alt="Brand logo" />
+        <h1>VIRGINIA TURKISH HOME</h1>
+      </div>
+      <nav id="categoryMenu" class="category-menu"></nav>
+      <p class="sidebar-note">Shipping cost is paid by the customer.</p>
+    </aside>
+
+    <main class="main-content">
+      <section class="hero" id="top">
+        <div class="hero-overlay">
+          <h2>VIRGINIA TURKISH HOME</h2>
+          <p>Curated Turkish elegance for timeless homes.</p>
+          <a href="#products" class="btn-gold">Shop Collection</a>
+        </div>
+      </section>
+
+      <section id="products" class="section">
+        <div class="section-title-wrap">
+          <h3>Collection</h3>
+          <p id="activeCategoryText">All Products</p>
+        </div>
+        <div id="productGrid" class="product-grid"></div>
+      </section>
+
+      <section id="cart" class="section card-panel">
+        <h3>Shopping Cart</h3>
+        <div id="cartItems"></div>
+        <div class="totals">
+          <p>Subtotal: <strong id="subtotal">$0.00</strong></p>
+          <p>Shipping Carrier: <strong>USPS</strong></p>
+          <p>Shipping Paid By: <strong>Customer</strong></p>
+          <p>Estimated Shipping: <strong id="shipping">$0.00</strong></p>
+          <p class="final">Final Total: <strong id="finalTotal">$0.00</strong></p>
+        </div>
+      </section>
+
+      <section id="tracking" class="section card-panel">
+        <h3>Order Tracking</h3>
+        <form id="trackingForm" class="inline-form">
+          <input type="text" id="orderNumber" placeholder="Enter order number" required />
+          <button type="submit" class="btn-gold">Track</button>
+        </form>
+        <p id="trackingStatus"></p>
+      </section>
+
+      <section id="membership" class="section card-panel">
+        <h3>Membership</h3>
+        <div class="membership-actions">
+          <button class="btn-gold" data-member="guest">Continue as Guest</button>
+          <button class="btn-gold" data-member="create">Create Account</button>
+          <button class="btn-gold" data-member="login">Log In</button>
+        </div>
+        <p id="membershipMessage"></p>
+      </section>
+
+      <section id="checkout" class="section card-panel">
+        <h3>Checkout</h3>
+        <p class="muted">Demo checkout only. No real payment is processed.</p>
+        <form id="checkoutForm" class="checkout-form">
+          <input name="fullName" placeholder="Full name" required />
+          <input name="email" type="email" placeholder="Email" required />
+          <input name="phone" placeholder="Phone number" required />
+          <input name="address" placeholder="Shipping address" required />
+          <div class="grid-3">
+            <input name="city" placeholder="City" required />
+            <input name="state" placeholder="State" required />
+            <input name="zip" placeholder="ZIP code" required />
+          </div>
+          <input name="card" placeholder="Card number" required />
+          <div class="grid-2">
+            <input name="exp" placeholder="Expiration date" required />
+            <input name="cvv" placeholder="CVV" required />
+          </div>
+          <button type="submit" class="btn-gold">Place Demo Order</button>
+        </form>
+        <p id="checkoutMessage"></p>
+      </section>
+
+      <footer class="footer">
+        <h4>VIRGINIA TURKISH HOME</h4>
+        <p>Luxury Turkish home selections for elegant living.</p>
+        <p>Contact: <a href="mailto:virginiaturkishhome@gmail.com">virginiaturkishhome@gmail.com</a></p>
+        <p>WhatsApp: <a href="https://wa.me/12028417836" target="_blank" rel="noreferrer">+1 202 841 7836</a></p>
+        <p>Shipping policy: Shipping cost is paid by the customer.</p>
+        <p>Customer service: We respond with care and attention to every order.</p>
+      </footer>
+    </main>
+
+    <a class="whatsapp-float" href="https://wa.me/12028417836" target="_blank" rel="noreferrer">WhatsApp Support</a>
+    <script src="script.js"></script>
+  </body>
+</html>
