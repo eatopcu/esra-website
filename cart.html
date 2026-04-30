@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart & Checkout | Virginia Turkish Home</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Virginia Turkish Home</a>
+      <nav class="site-nav">
+        <a href="index.html">Continue Shopping</a>
+        <a href="cart.html" class="cart-link">Cart <span id="cartCount">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container cart-layout">
+    <section>
+      <h1>Your Shopping Cart</h1>
+      <div id="cartItems" class="cart-items"></div>
+    </section>
+
+    <aside class="checkout-card">
+      <h2>Order Summary</h2>
+      <p>Subtotal: <span id="subtotal">$0.00</span></p>
+      <p>Shipping (flat): <span id="shipping">$15.00</span></p>
+      <p class="shipping-note"><strong>Shipping cost is paid by the customer.</strong></p>
+      <p class="total-row">Total: <span id="total">$0.00</span></p>
+
+      <h3>Checkout (Demo)</h3>
+      <form id="checkoutForm" class="checkout-form">
+        <label>Full Name<input type="text" required /></label>
+        <label>Address<input type="text" required /></label>
+        <label>Card Number<input type="text" maxlength="19" placeholder="1234 5678 9012 3456" required /></label>
+        <label>Expiry<input type="text" placeholder="MM/YY" required /></label>
+        <label>CVV<input type="password" maxlength="4" required /></label>
+        <button class="btn primary" type="submit">Place Order (Demo)</button>
+      </form>
+      <p id="checkoutMessage" class="checkout-message"></p>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Virginia Turkish Home</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Virginia Turkish Home</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <nav class="site-nav" id="siteNav">
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="cart.html" class="cart-link">Cart <span id="cartCount">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Elegant Turkish Home & Serving Collections</h1>
+      <p>Discover refined coffee and tea presentation sets with a soft, timeless aesthetic for your living spaces.</p>
+      <a href="#products" class="btn primary">Shop Featured Products</a>
+    </div>
+  </section>
+
+  <main>
+    <section class="category-menu container">
+      <h2>Shop by Category</h2>
+      <div id="categoryList" class="category-grid"></div>
+    </section>
+
+    <section id="products" class="products-section container">
+      <div class="section-heading">
+        <h2>Featured Products</h2>
+        <select id="categoryFilter" aria-label="Filter products by category">
+          <option value="all">All Categories</option>
+        </select>
+      </div>
+      <div id="productGrid" class="product-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div id="about">
+        <h3>About</h3>
+        <p>Virginia Turkish Home curates elegant Turkish-style home and serving pieces that blend tradition and modern living.</p>
+      </div>
+      <div id="contact">
+        <h3>Contact</h3>
+        <p>Email: hello@virginiaturkishhome.com</p>
+        <p>Phone: +1 (555) 123-4567</p>
+      </div>
+      <div>
+        <h3>Shipping Policy</h3>
+        <p><strong>Shipping cost is paid by the customer.</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
